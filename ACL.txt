@@ -1,0 +1,45 @@
+================ADVANCED PERMISSION======================
+
+ACL - getfacl, setfacl
+
+LEARNING 0BJECTIVES - 
+USED TO APPLY FINE-GAINED PERMISSIONS ON FILES AND DIRECTORIES
+
+---------------------------------------------------------
+NEEDS-
+
+------------\    USER OWNER : Anurag(rwx)
+|DATA.txt   |	 GROUP OWNER : Linux(rw-)
+-------------	 OTHERS :(r--)
+
+---------------------------------------------------------
+r - READ
+w - WRITE
+x - EXECUTE
+- - PERMISSION IS ABSENT
+X - MEANS EXECUTE IS SET ON DIRECTORIES AND NOT REGULAR FILES      	(UNLESS THE FILE ALREADY HAS EXECUTE PERMISSION)
+
+
+
+=====================================================
+
+HEAD - TO VIEW INITIAL CONTENT OF THE FILE (10 LINES BY DEFAULT)
+#head /etc/passwd
+
+=====================================================
+
+TAIL - TO VIEW LAST CONTENT OF THE FILE
+#tail /etc/passwd
+
+=====================================================
+
+PASSWD - TO CHANGE THE USER ACCOUNT PASSWD
+NORMAL USER CAN CHANGE ONLY HIS ACCOUNT PASSWD
+ROOT USER CAN CHANGE THE OTHER USERS PASSWD
+e.g.,:- #passwd username
+#passwd Anurag
+
+======================================================
+
+MAN (MANUAL PAGE)- DETAILED MANUAL FOR ANY COMMAND
+# man head

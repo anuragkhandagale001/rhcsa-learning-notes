@@ -1,0 +1,20 @@
+========================ESSENTIAL TOOLS===========================
+---------------HEAD, TAIL, PASSWD, MAN COMMANDS-------------------
+
+HEAD - TO VIEW INITIAL CONTENT OF THE FILE (10 LINES BY DEFAULT)
+#head /etc/passwd
+------------------------------------------------------------------
+
+TAIL - TO VIEW LAST CONTENT OF THE FILE
+#tail /etc/passwd
+------------------------------------------------------------------
+
+PASSWD - TO CHANGE THE USER ACCOUNT PASSWDNORMAL USER CAN CHANGE 	 ONLY HIS ACCOUNT PASSWD.
+       - ROOT USER CAN CHANGE THE OTHER USERS PASSWD
+e.g.,:- #passwd username
+#passwd Anurag
+------------------------------------------------------------------
+
+MAN (MANUAL PAGE)- DETAILED MANUAL FOR ANY COMMAND
+# man head
+==================================================================

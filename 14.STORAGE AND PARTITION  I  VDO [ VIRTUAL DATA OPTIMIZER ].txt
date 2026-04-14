@@ -1,0 +1,124 @@
+=====================STORAGE AND PARTITION======================
+----------------VDO [ VIRTUAL DATA OPTIMIZER ]------------------
+
+LEARNING OBJECTIVES - 
+- UNDERSTANDING THE USE OF VDO.
+- CREATING VDO.
+
+WHAT IS VDO -
+- VDO - VIRTUAL DATA OPTIMIZER.
+- HELPS TO REDUCE DISK SPACE USAGE THROUGH.
+  ~ DEDUPLICATION
+  ~ COMPRESSION
+  ~ THIN PROVISIONING
+
+----------------------------------------------------------------
+DEDUPLICATION EXAMPLE - 
+                ┌───────────────────────┐
+ 		│      HARD DISK        │
+ 		├───────────────────────┤
+ 		│ █████████████████████ │  <-- data 👤1
+👤2 data -->	│ █████████████████████ │
+		│ ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ │
+ 		│ ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ │
+ 		└───────────────────────┘
+- IN THE ABOVE DIAGRAM 👤1 WHO STORES SOME DATA MA BE FILE OF IMAGE IN HARDDISK ANDE THERE IS ANOTHER 👤2 WHO SOME HOW STORES THE SAME DATA IN THE HARDISK.
+
+- IN NORMAL SENARIO THE DATA OFTHE BOTH THE USER WILL BESAVED SAPERATLY. IT WILL OCCIPY THE EXTRA SPACE FOR THE SAME DATA.
+
+- NOW WHAT HAPPENS IN VDO IS IT DOES NOT STORES THE DUBLICATE ENTRY RATHER ITS POINTS TO THE SAME PREVIOUS ENTRY. THIS CONCEPT IS KNOWN AS DEDUPLICATION.
+
+                ┌───────────────────────┐
+ 		│      HARD DISK        │
+ 		├───────────────────────┤
+   👤2 data -->	│ █████████████████████ │<-- data 👤1
+		│ ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ │
+		│ ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ │
+ 		│ ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ │
+ 		└───────────────────────┘	
+
+----------------------------------------------------------------
+COMPRESSION EXAMPLE -
+
+                ┌───────────────────────┐
+ 		│      HARD DISK        │
+ 		├───────────────────────┤
+ 		│ █████████████▒▒▒▒▒▒▒▒ │  <-- data 👤1
+👤2 data -->	│ ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ │
+		│ ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ │
+ 		│ ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ │
+ 		└───────────────────────┘
+- ANOTHER ADVANTAGE OF THE VDO IS TT WILL COMPRESS THE DATA USING COMPRESSION TECHNIQUE.
+
+----------------------------------------------------------------
+THIN PROVISIONING EXAMPLE -
+
+            ┌────────────────────────────┐
+ 	    │      HARD DISK             │
+	    ├────────────────────────────┤
+👤2 data-->	│ █████████████▒▒▒▒▒▒▒▒▒▒▒▒▒ │ <-- data 👤1  
+	    │ ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ │   
+            │ ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ │
+	    │ ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ │
+	    │ ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ │
+	    │ ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ │
+            └────────────────────────────┘
+- WITH THE THIN PROVISIONING TECHNIQUE. ITS MAKE THE STORAGE LOOKS BIGGER. WITH THIN PROVISIONING ALLOWS TO ALLOCATE MORE SPACE LOGICALLY THAN ITS PHYSICALLY AVAILABLE.
+
+- HOWEVER THE SPACE ACTUALLY USED BY DATA IS CONSUMED ENSURING OPTIMAL STORAGE UTILIZATION INSTED OF ALL UPFORNT.
+
+- SIMPLLY MEANS WE CAN CREATE A LOGICAL LARGER STORAGE SPACE THAN ACTUAL PHYSICALLY AVAILABLE.
+
+- FOR EXAMPLE, WITH THE HELP OF 5GB OF PHYSICAL STORAGE WE CAN CREATE 50G OF VD0 VOLUME.
+
+- HOWEVER INSTED OF RESERVING THE ENTIRE 50GB UPFRONT THE SYSTEM ONLY CONSUMES THE SPACE NEEDED BY ACTUAL DATA.
+
+- SO, IF USER STORES THE 1GB OF DATA THEN ONLY 1GB OF THE PHYSICAL SPACE WILL BE USED AND REMAINING 49GB WILL BE REMAINS AVAILABE FOR FUTURE USE. THIS ENSURES EFFECIANT AND DYNAMIC STORAGE UTILIZATION.
+
+- BUT IF THE 5GB OF PHYSICAL STORAGE IS USED COMPLETLY THEN THE NEW DATA CANNOT BE WRITTEN EVEN TOUGH THE LOGICAL SPACE IS 50GB.
+
+- LOGICAL SIZE RATIO IDEALLY IS 1/10. THERE IS NO NEED TO TAKE THE RATION 1/10.
+
+- THE MAXIMUM SIZE ALLOWED FOR LOGICAL SIZE IS 256 TIMES THE     PHYSICAL SIZE. 
+
+- AND THE UPPERLIMIT IS 4 PETABYTES BUT IN GENERAL RATIO IS KEPT AS 1/10.
+================================================================
+
+PACKAGE REQUIRED -
+
+#yum install lvm2 kmod-kvdo vdo
+----------------------------------------------------------------
+
+STEPS FOR VDO- 
+
+STEP1: PREPARE PHYSICAL DEVICE 
+	- PARTITION
+	- DISK
+STEP2: CREATE A PHYSICAL VOLUME
+	- pvcreate
+	#pvcreate /dev/sda 
+STEP3: CREATE A VOLUME GROUP
+	- vgcreate
+	#vgcreate VG1 /dev/sda
+STEP4: CREATE LOGICAL VOLUME
+	- lvcreate
+	#lvcreate --type vdo --name VDO1 --size 5GB 
+	 --virtualsize 50GB VG1
+STEP5: ADD THE FILE SYSTEM
+	- mkfs
+	#mkfs.xfs -K /dev/VG1/VDO1
+STEP6: PERSISTENT MOUNT 
+	- /etc/fstab
+	#vim etc/fstab
+	- PRESS 'i'
+	- TYPE '/dev/VG1/VDO1   /VD1	xfs	defaults    0 0'
+	- PRESS 'esc'
+	- TYPE ':wq'
+	- PRESS 'enter'
+STEP7: MAKE MOUNT DIRECTORY OR MOUNT POINT
+	- mkdir
+	#mkdir /VD1
+STEP8: CHECK FOR ERROR
+	-mount -a
+	#mount -a
+================================================================

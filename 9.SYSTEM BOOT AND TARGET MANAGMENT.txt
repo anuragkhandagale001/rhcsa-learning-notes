@@ -1,0 +1,20 @@
+==============SYSTEM BOOT AND TARGET MANAGEMENT===================
+-----------------------TARGET MANAGEMEN--------------------------
+TO CHECK THE TARGET:-
+#systemctl get-default
+
+SWITCH TO CLI MODE:-
+#systemctl isolate multi-user.target
+
+SWITCH TO GUI MODE:-
+#systemctl isolate graphical.target
+
+ISOLATE MEANS TO SWITCH FROM CLI TO GUI OR TO SWITCH GUI TO CLI BUT ITS AN TEMP METHOD
+
+------------------------------------------------------------------
+FOR PERMENANT METHOD use set-default (FOR CLI) SO REBOOT REDIRECTS TO CLI ONLY
+#systemctl set-default multi-user.target
+
+FOR PERMENANT METHOD use set-default (FOR GUI) SO REBOOT REDIRECTS TO GUI ONLY
+#systemctl set-default graphical.target
+------------------------------------------------------------------

@@ -1,0 +1,83 @@
+=======================ESSENTIAL TOOLS==========================
+-------------------cat, cp, mv, cd COMMANDS---------------------
+
+TO CHECK THE CURRENT WORKING DIRECTORY
+$pwd
+----------------------------------------------------------------
+
+PATH - THERE ARE TWO WAYS TO SPECIFY THE PATH
+
+RELATIVE PATH - IN IT WE SPECIFY THE PATH FROM CURRENT DIRECTORY ONWARDS
+
+EXAMPLE RELATIVE - 
+			/
+			|
+		--------------------
+		|		   |
+	      Home		  etc
+		|--------
+		|	|
+	      user    Linux
+
+IN THIS CASE OUR CURRENT DIRECTORY IS Home
+TO CREATE Linux FILE IN HOME DIRECTORY 
+$touch Home/Linux
+----------------------------------------------------------------
+
+ABSOLUTE PATH - IN IT WE SPECIFY THE PATH STARTING FROM ROOT ITSELF 
+
+EXAMPLE ABSOLUTE - 
+			/
+			|
+		--------------------
+		|		   |
+	      Home		  etc
+		|--------
+		|	|
+	      user    Linux
+
+TO CREATE Linux FILE IN HOME DIRECTORY 
+#touch /Home/Linux
+================================================================
+
+cd - USED TO CHANGE THE DIRECTORY
+#cd Desktop
+
+TO BACK TO HOME DIRECTORY 
+#cd 
+
+TO GO TO PARENT DIRECTORY
+#cd ..
+----------------------------------------------------------------
+
+cp - COPY ONE FILE TO ANOTHER DIRECTORIES
+CAN COPY MULTIPLE FILES IN DESTINATION DIRECTORY BUT CANNOT COPY ONE FILE IN MULTIPLE DESTINATION (COPY + PASTE)
+#cp source_file destination_file
+
+TO COPY ONE DIRECTORY TO ANOTHER DIRECTORY
+#cp -r source_directory destination_directory
+HERE, -r STANDS FOR RECERSIVE CAUSE TO COPY CONTENTS OF THE DIRECTORY
+----------------------------------------------------------------
+
+mv - MOVE ONE FILE TO ANOTHER DIRECTORIES
+CAN MOVE MULTIPLE FILES IN DESTINATION DIRECTORY BUT CANNOT MOVE ONE FILE IN MULTIPLE DESTINATION (CUT + PASTE)
+#mv source_file destination_file
+
+TO MOVE ONE DIRECTORY TO ANOTHER DIRECTORY
+#mv -r source_directory destination_directory
+HERE, -r STANDS FOR RECERSIVE CAUSE TO MOVE CONTENTS OF THE DIRECTORY
+
+ANOTHER USE IS TO RENAME THE FILE LIKE CHANGE FILE NAME OR ADD  EXTENSION TO FILE
+#mv anurag anurag.c
+----------------------------------------------------------------
+
+cat IS ALSO USED TO VIEW THE CONTENT 
+#cat /etc/passwd - USED TO VIEW USERS IN THE SYSTEM
+#cat anurag.c - USED TO VIEW THE CODE / CONTENT INSIDE THE anurag.c FILE ON THE TERMINAL IT SELF
+#cat anurag.c F1.txt - WE CAN ALSO CLUB MULTIPLE FILES MEANS WE CAN VIEW THE CONTENT OF MULTIPLE FILES TOGETHER
+
+
+cat - USED TO CONCATNATE FILES AND PRINT ON THE STANDARD OUTPUT
+
+REDHAT + LINUX = REDHAT LINUX
+================================================================

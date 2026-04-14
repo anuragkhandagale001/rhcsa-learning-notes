@@ -1,0 +1,146 @@
+=====================STORAGE AND PARTITION======================
+--------------LVM [ LOGICAL VOLUME MANAGEMENT ]-----------------
+
+LEARNING OBJECTIVES - 
+- UNDERSTAND THE NEED OF LVM.
+- CREATING LV.
+- EXTEND LV.
+- DELETE LV.
+ 
+----------------------------------------------------------------
+LOGICAL VOLUME MANAGEMENT -
+
+	┌────────────┐ 	 ┌────────────┐
+	│   LV 1     │		 │   L2 2     │ 	  
+	├───────────┤	 ├───────────┤
+	│ █████████ │ 	 │ █████████ │	  
+	│ ███8GB ███ │	 │ ███7GB ███ │	  
+	│ █████████ │	 │ █████████ │
+	│ ▒▒▒▒▒▒▒▒▒ │	 │ ▒▒▒▒▒▒▒▒▒ │	  
+	└───────────┘	 └───────────┘
+		 4.CREATE LOGICAL VOLUME	  
+		 ^		      ^			  
+		 |		      |			  
+		 |		      |			  
+       ┌─────────────────────────────────┐
+       │   VG [ VOLUME GROUP ] (15 GB)     │
+       ├─────────────────────────────────┤
+       │ █████████████▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ │    
+       │ ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ │   
+       │ ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ │
+       │ ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ │
+       │ ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ │
+       │ ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ │
+       └─────────────────────────────────┘
+		  3.CREATE VOLUME GROUP
+	^		     ^			  ^
+	|		     |			  |
+	|		     |			  |
+┌────────────┐ 	 ┌────────────┐	  ┌────────────┐
+│   PV 1     │		 │   PV 2     │ 	  │   PV 3     │
+├───────────┤	 ├───────────┤	  ├───────────┤
+│ █████████ │ 	 │ █████████ │	  │ █████████ │
+│ ███6GB ███ │	 │ ███5GB ███ │	  │ ███5GB ███ │
+│ █████████ │	 │ █████████ │	  │ █████████ │
+│ ▒▒▒▒▒▒▒▒▒ │	 │ ▒▒▒▒▒▒▒▒▒ │	  │ ▒▒▒▒▒▒▒▒▒ │
+└───────────┘	 └───────────┘	  └───────────┘
+		   2.CREATE PHICAL VOLUME
+	^		     ^			  ^
+	|		     |			  |
+	|		     |			  |
+┌────────────┐ 	 ┌────────────┐	  ┌────────────┐
+│ HARD DISK 1 │		 │ HARD DISK 2 │	  │ HARD DISK 3 │
+├───────────┤	 ├───────────┤	  ├───────────┤
+│ █████████ │ 	 │ █████████ │	  │ █████████ │
+│ ███6GB ███ │	 │ ███5GB ███ │	  │ ███5GB ███ │
+│ █████████ │	 │ █████████ │	  │ █████████ │
+│ ▒▒▒▒▒▒▒▒▒ │	 │ ▒▒▒▒▒▒▒▒▒ │	  │ ▒▒▒▒▒▒▒▒▒ │
+└───────────┘	 └───────────┘	  └───────────┘	 
+	             1. PHYSICAL STORAGES	
+
+----------------------------------------------------------------KEY BENIFITS -
+- FLEXIBLE STORAGE MANAGMENT.
+- EASIER EXPANSION.
+- RESIZING ON DEMAND.
+- EFFECTIVE USE OF STORAGE.
+
+----------------------------------------------------------------
+LVM ELEMENTS -
+
+PHYSICAL DEVICE >> PHYSICAL VOLUME >> VOLUME GROUP >> LOGICAL VOLUMES
+	
+----------------------------------------------------------------
+
+STEPS FOR CREATING LVM- 
+
+STEP1: PREPARE PHYSICAL DEVICE 
+	- PARTITION
+	- DISK
+STEP2: CREATE A PHYSICAL VOLUME
+	- pvcreate
+	#pvcreate /dev/sda /dev/sdb /dev/sdc
+STEP3: CREATE A VOLUME GROUP
+	- vgcreate
+	#vgcreate VG1 /dev/sda /dev/sdb
+STEP4: CREATE LOGICAL VOLUME
+	- lvcreate
+	#lvcreate -l100%FREE -n LV1 VG1
+	#lvcreate -L 11G -n LV1 VG1
+STEP5: ADD THE FILE SYSTEM
+	- mkfs
+	#mkfs.xfs /dev/VG1/LV1
+STEP6: PERSISTENT MOUNT 
+	- /etc/fstab
+	#vim etc/fstab
+	- PRESS 'i'
+	- TYPE '/dev/VG1/LV1   /LVM1	xfs	defaults    0 0'
+	- PRESS 'esc'
+	- TYPE ':wq'
+	- PRESS 'enter'
+STEP7: MAKE MOUNT DIRECTORY OR MOUNT POINT
+	- mkdir
+	#mkdir /LVM1
+STEP8: CHECK FOR ERROR
+	-mount -a
+	#mount -a
+
+----------------------------------------------------------------
+STEPS FOR EXTENDING LVM- 
+
+STEP1: PREPARE PHYSICAL DEVICE 
+	- PARTITION
+	- DISK
+STEP2: EXTEND A VOLUME GROUP
+	- vgextend
+	#vgextend VG1 /dev/sdc
+STEP3: EXTEND LOGICAL VOLUME
+	- lvextend
+	#lvextend -l +100%FREE -n LV1 VG1
+	#lvextend -L +5G -n LV1 VG1
+
+----------------------------------------------------------------
+STEPS FOR DELETING LVM- 
+
+STEP1: UNMOUNT THE FILESYSTEM
+	- umount
+	#umount /dev/VG1/LV1
+STEP2: REMOVE THE LOGICAL VOLUME
+	- lvremove
+	#lvremove /dev/VG1/LV1
+	#lvremove -f /dev/VG1/LV1
+STEP4: REMOVE THE VOLUME GROUP
+	- vgremove
+	#vgremove VG1
+STEP5: REMOVE THE PHISICAL VOLUME 
+	- pvremove
+	#pvremove /dev/sda /dev/sdb /dev/sdc
+STEP6: WIPE PERSISTENT MOUNT 
+	- /etc/fstab
+	#vim etc/fstab
+	- PRESS 'i'
+	- REMOVE '/dev/VG1/LV1   /LVM1	xfs	defaults    0 0'
+	- PRESS 'esc'
+	- TYPE ':wq'
+	- PRESS 'enter'
+
+================================================================

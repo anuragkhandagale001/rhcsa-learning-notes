@@ -1,0 +1,61 @@
+==================USER AND GROUP MANAGMENT======================
+USER INFO-
+
+THE USER WE CREATE ON SYSTEM WILL BE SAVE IN /etc/passwd file
+
+TO CHECK THE USERS IN SYSTEM
+#cat /etc/passwd
+
+THE INFORMATION CONTAINS 7 FIELDS /COLUMNS
+
+| USERNAME | PASSWD | UID | GID | COMMENT FIELD | HOME DIRECTORY | LOGIN SHELL |
+
+----------------------------------------------------------------
+useradd - USED TO CREATE NEW USER ACCOUNTS
+#useradd username		  //USED TO CREATE NEW USER
+#useradd anurag -s /sbin/nologin  //USED TO DEFINE LOGIN SHELL
+
+-u - USED TO ADD UID
+-g - USED TO ADD GID (PRIMARY GROUP)       #cat /etc/passwd
+-c - USED TO ADD COMMENT 
+-s - USED TO DEFINE LOGIN SHELL
+-G - USED TO ADD SUPPLYMENTRY GROUP 
+
+----------------------------------------------------------------
+usermod - TO CHANGE INFORMATION OF EXISTING USER ACCOUNTS 
+#usermod anurag -u 1999		//USED TO ADD UID
+#usermod anurag -g 4444		//USED TO ADD GID
+#usermod anurag -c "anurag khandagale"  //USED TO ADD COMMENT
+
+----------------------------------------------------------------userdel - USED TO DELETE THE EXISTING USER ACCOUNT 
+#userdel username 
+
+================================================================
+CREATE GROUP ACCOUNTS-
+
+TO CHECK THE GROUP IN SYSTEM
+#cat /etc/group
+
+THE INFORMATION CONTAINS 4 FIELDS /COLUMNS
+
+| GROUPNAME | PASSWD | GID | USER LIST |
+
+----------------------------------------------------------------
+groupadd - USED TO CREATE NEW GROUP ACCOUNTS
+#groupadd groupname		  //USED TO CREATE NEW GROUP
+#groupadd -g 9090 AVIT 		  //USED TO DEFINE GID
+
+----------------------------------------------------------------
+groupmod - USED TO CHANGE INFORMATION OF EXISTING GROUP ACCOUNTS
+#groupmod -g 9000 AVIT 		//USED TO CHANGE GID OF AVIT
+#groupmod -U Anurag AVIT	//USED TO ASSIGN USER TO GROUP 
+
+-g - USED TO CHANGE OR TO DEFINE GID 
+-U - USED TO ASSIGN USER TO GROUP
+
+----------------------------------------------------------------
+groupedl - USED TO DELETE EXISTING GROUP ACCOUNTS
+#groupdel AVIT 		 
+
+================================================================
+

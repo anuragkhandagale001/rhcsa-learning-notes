@@ -1,0 +1,46 @@
+=======================ESSENTIAL TOOLS==========================
+--------------touch, mkdir, rmdir, rm COMMANDS------------------
+
+touch - USED THE CREATE AN NEW FILE OR TO UPDATE TIME STAMP OF TAN EXISTING FILE
+#touch Anurag.txt
+#touch anurag
+WE CAN ALSO CREATE MULTIPLE FILES AT A TIME
+#touch f1 f2 
+----------------------------------------------------------------
+
+mkdir - USED TO CREATE NEW DIRECTORY
+#mkdir Anurag
+WE CAN ALSO CREATE MULTIPLE DIRECTORIES AT A TIME
+#mkdir DIR1 DIR2 DIR3
+WE CAN ALSO MAKE HERARCHY OF TH DIRECTORIES
+#mkdir A
+#mkdir A/B
+#mkdir A/B/C
+THIS MAY TAKE TIME ANOTHER METHOD IS
+#mkdir -p A1/B1/C1
+HERE, -p STANDS FOR PARENT
+----------------------------------------------------------------
+
+rm - USED TO REMOVE/ DELETE THE FILES 
+DELETING WITH CONFIRMATION
+#rm M 
+THEN TYPE y
+
+DELETING WHIH OUT CONFIRMATION
+#rm -f M 
+
+DELETING MULTIPLE FILES WITHOUT CONFIRMATION
+#rm -f N B V C X Z
+----------------------------------------------------------------
+
+rmdir - USED TO REMOVE/ DELETE THE EMPTY DIRECTORY (NON HERCARCHY / NO-PARENT DIRECTORIES (e.g., AA/BB/CC))
+#rmdir A
+
+TO REMOVE NOT EMPTY DIRECTORY
+#rm -r AA
+HERE, -r STANDS FOR DELETE RECERSIVE
+BUT IT WILL REQUIRES CONFIRMATION 
+
+TO REMOVE NOT EMPTY DIRECTORY WITH OUT CONMATION
+#rm -r -f AA
+================================================================

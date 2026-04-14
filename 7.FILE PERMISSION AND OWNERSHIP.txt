@@ -1,0 +1,101 @@
+================FILE PERMISSION & OWNERSHIP=====================
+
+PERMISSION DEFINE A SET OF PRIVILEDGE
+PERMISSION DEFINE EHAT ACTIONS A USER CAN PERFORM ON A FILE OR DIRECTORY
+
+----------------------------------------------------------------
+FOR FILE-
+#ls -l <file_path>
+
+----------------------------------------------------------------
+FILE ACCESS MODES-
+
+READ - THE USER CAN READ THE DATA OF FILE
+WRITE - THE USER CAN WRITE THE DATA OF FILE
+EXECUTE - THE USER CAN EXECUTE THE FILE
+
+FOR FILE- 
+
+READ - cat, less, more, head, tail, grep, nano, gedit, vim 
+WRITE - >, >>, nano, gedit, vim
+EXECUTE - 
+
+----------------------------------------------------------------
+DISPLAYS 10 FIELDS-
+
+   1        3       3       3        =      10
+|   	|  rw-	|  r--	|  r--	|	
+| Type	| Owner	| Group	| Other	|
+
+TYPE = - FILE
+       d DIRECTORY
+       l LINK
+
+OWNER = WHO CREATED THE FILE
+
+GROUP = PRIMARY GROUP OF THE OWNER OF THE FILE WILL BE THE GROUP OF THE FILE 
+
+OTHER = USERS OTHER THAN OWNER AND THE GROUP MEMBERS
+
+----------------------------------------------------------------
+FOR DIRECTORY-
+#ls -ld <dir_path>
+
+----------------------------------------------------------------
+DIRECTORY ACCESS MODES-
+
+READ - THE USER CAN READ THE DATA OF DIRECTORY
+WRITE - THE USER CAN WRITE THE DATA OF DIRECTORY
+EXECUTE - THE USER CAN EXECUTE THE DIRECTORY
+
+FOR DIRECTORY- 
+
+READ - ls 
+WRITE - touch, mkdir, rmdir, rm
+EXECUTE - cd
+
+----------------------------------------------------------------
+PERMISSION ASSIGN METHOD 
+
+#chmod <permissions> <file/dir_path>
+
+TO ADD PERMISSION
+#chmod u/g/o + r/w/x/rw/wx/rx/rwx <file/dir_path>
+
+
+TO REMOVE PERMISSION
+#chmod u/g/o - r/w/x/rw/wx/rx/rwx <file/dir_path>
+
+
+1. SYMBOLIC METHOD -
+
+| READ = r  | WRITE = w | EXECUTE = x | 
+| OWNER = u | GROUP = g | OTHER = o   |
+| ADD = +   | REMOVE = -| ASSIGN = (=)|
+
+2. NUMERIC METHOD
+
+READ = 4
+WRITE = 2
+EXECUTE = 1
+NO PERMISSION 0
+
+	-	r--	r--	r--
+       TYPE    OWNER   GROUP   OTHER
+	
+		rwx	r-w	rw-
+		4+2+1	4+0+1   4+2+0
+		7	5	6      = 756(PERMISSION VALUE)
+
+#chmod <permission_value> <file/dir_path>
+#chmod 756 test
+
+
+	-	r--	r--	r--
+       TYPE    OWNER   GROUP   OTHER
+	
+		r--	r--	r--
+		4	4       4      = 756(PERMISSION VALUE)
+
+#chmod 444 test
+================================================================
